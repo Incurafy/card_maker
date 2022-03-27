@@ -1,9 +1,8 @@
 // main,dart
 
 import 'package:flutter/material.dart';
+import 'package:card_maker/src/deck_screen.dart';
 import 'package:card_maker/src/item_card.dart';
-import 'package:card_maker/src/card_details.dart';
-
 // Main method, entry point into the program, nothing unusual.
 // runApp inflates the given widget and attaches it to the screen.
 void main() => runApp(const CardMakerApp());
@@ -25,42 +24,10 @@ class CardMakerApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(),
       ),
-      home: const CardDeck(
+      home: const DeckScreen(
         title: "Card Deck",
         itemCards: [ItemCard("Item Name", "This is the item's description.")],
       )
-    );
-  }
-}
-
-class CardDeck extends StatelessWidget {
-  const CardDeck({Key? key, required this.title, required this.itemCards}) : super(key: key);
-
-  final String title;
-  final List<ItemCard> itemCards;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Card Deck"),
-      ),
-      body: ListView.builder(
-        itemCount: itemCards.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(itemCards[index].itemName),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CardDetails(itemCard: itemCards[index])
-                ) 
-              );
-            }
-          );
-        }
-      ),
     );
   }
 }

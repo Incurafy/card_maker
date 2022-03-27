@@ -1,7 +1,7 @@
-// card.dart
+// item_card.dart
 
+// Defines an item card and its properties (many not listed)
 class ItemCard {
-  // TODO: Add the rest
   final String itemName;
   final String itemDesc;
 

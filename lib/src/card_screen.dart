@@ -1,10 +1,11 @@
-// item_details.dart
+// card_screen.dart
 
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/item_card.dart';
 
-class CardDetails extends StatelessWidget {
-  const CardDetails({ Key? key, required this.itemCard }) : super(key: key);
+// Display the details of an item card
+class CardScreen extends StatelessWidget {
+  const CardScreen({ Key? key, required this.itemCard }) : super(key: key);
 
   final ItemCard itemCard;
 
