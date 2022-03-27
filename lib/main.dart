@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/deck_screen.dart';
 import 'package:card_maker/src/item_card.dart';
+
 // Main method, entry point into the program, nothing unusual.
 // runApp inflates the given widget and attaches it to the screen.
 void main() => runApp(const CardMakerApp());
@@ -15,19 +16,18 @@ class CardMakerApp extends StatelessWidget {
   // First : is a separator that specifies the initialiser list of the constructor
   // Second : is how a parameter is passed to a name function (super() in this case)
   // Keys preserve state when a widget is moved around in the widget tree
-  const CardMakerApp({ Key? key }) : super(key: key); //
+  const CardMakerApp({Key? key}) : super(key: key); //
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Card Maker",
-      theme: ThemeData(
-        colorScheme: const ColorScheme.dark(),
-      ),
-      home: const DeckScreen(
-        title: "Card Deck",
-        itemCards: [ItemCard("Item Name", "This is the item's description.")],
-      )
-    );
+        title: "Card Maker",
+        theme: ThemeData(
+          colorScheme: const ColorScheme.dark(),
+        ),
+        home: const DeckScreen(
+          title: "Card Deck",
+          itemCards: [ItemCard("Item Name", "This is the item's description.")],
+        ));
   }
 }

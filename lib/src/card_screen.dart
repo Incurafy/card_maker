@@ -5,7 +5,7 @@ import 'package:card_maker/src/item_card.dart';
 
 // Display the details of an item card
 class CardScreen extends StatelessWidget {
-  const CardScreen({ Key? key, required this.itemCard }) : super(key: key);
+  const CardScreen({Key? key, required this.itemCard}) : super(key: key);
 
   final ItemCard itemCard;
 
