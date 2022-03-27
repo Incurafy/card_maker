@@ -23,13 +23,12 @@ class CardMakerApp extends StatelessWidget {
     return MaterialApp(
       title: "Card Maker",
       theme: ThemeData(
-        // Theme for the app. It can be used to 
-        primarySwatch: Colors.deepPurple,
+        colorScheme: const ColorScheme.dark(),
       ),
       home: const CardDeck(
         title: "Card Deck",
         itemCards: [ItemCard("Item Name", "This is the item's description.")],
-        )
+      )
     );
   }
 }
