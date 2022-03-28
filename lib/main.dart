@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/deck_screen.dart';
 import 'package:card_maker/src/item_card.dart';
+import 'package:uuid/uuid.dart';
 
 // Main method, entry point into the program, nothing unusual.
 // runApp inflates the given widget and attaches it to the screen.
@@ -20,14 +21,19 @@ class CardMakerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var uuid = const Uuid();
+    var id = uuid.v4();
+    
     return MaterialApp(
-        title: "Card Maker",
-        theme: ThemeData(
-          colorScheme: const ColorScheme.dark(),
-        ),
-        home: const DeckScreen(
-          title: "Card Deck",
-          itemCards: [ItemCard("Item Name", "This is the item's description.")],
-        ));
+      title: "Card Maker",
+      theme: ThemeData(
+        //colorScheme: const ColorScheme.dark(),
+        primarySwatch: Colors.deepPurple,
+      ),
+      home: DeckScreen(
+        title: "Card Deck",
+        itemCards: [ItemCard(id, 0, "Item Name", "This is a description of the item.")],
+      )
+    );
   }
 }

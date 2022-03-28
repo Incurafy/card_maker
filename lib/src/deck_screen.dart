@@ -29,9 +29,13 @@ class DeckScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              CardScreen(itemCard: itemCards[index])));
-                });
-          }),
+                              CardScreen(itemCard: itemCards[index])
+                    )
+                  );
+                }
+              );
+          }
+        ),
     );
   }
 }
