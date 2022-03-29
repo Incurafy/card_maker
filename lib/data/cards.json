@@ -1,60 +1,60 @@
 {
     "cards": [
         {
-        "id": "4fb07e96-7ee1-4803-8125-96235b5ab233",
-        "index": 0,
-        "type": "weapon",
+        "itemIndex": 0,
+        "itemId": "4fb07e96-7ee1-4803-8125-96235b5ab233",
+        "itemType": "weapon",
         "itemName": "Brand",
-        "desc": "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues."
+        "itemDesc": "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues."
         },
         {
-        "id": "7ae02f17-25b3-472f-9d28-a8d7286d5fc9",
-        "index": 1,
-        "type": "armour",
+        "itemIndex": 1,
+        "itemId": "7ae02f17-25b3-472f-9d28-a8d7286d5fc9",
+        "itemType": "armour",
         "itemName": "Salamander Flame Gauntlets",
-        "desc": "These dark metal gauntlets were forged using fire from the heart of a salamander."
+        "itemDesc": "These dark metal gauntlets were forged using fire from the heart of a salamander."
         },
         {
-        "id": "adf0a66c-e32f-4a14-922e-2d2c67c9bb6e",
-        "index": 2,
-        "type": "staff",
+        "itemIndex": 2,
+        "itemId": "adf0a66c-e32f-4a14-922e-2d2c67c9bb6e",
+        "itemType": "staff",
         "itemName": "Nimbus, First Staff of the Thunderbirds",
-        "desc": "This ancient staff was created when a piece of driftwood was struck by lightning, fusing it to a twisted length of glass made from the sand on which it laid."
+        "itemDesc": "This ancient staff was created when a piece of driftwood was struck by lightning, fusing it to a twisted length of glass made from the sand on which it laid."
         },
         {
-        "id": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "index": 3,
-        "type": "wand",
+        "itemIndex": 3,
+        "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
+        "itemType": "wand",
         "itemName": "Direstone Wand",
-        "desc": "A rigid stone wand used by the arcane dwarves of the Direstone mines."
+        "itemDesc": "A rigid stone wand used by the arcane dwarves of the Direstone mines."
         },
         {
-        "id": "da37f03f-9bc1-4d0c-b764-33f352c74dc8",
-        "index": 4,
+        "itemIndex": 4,
+        "itemId": "da37f03f-9bc1-4d0c-b764-33f352c74dc8",
         "itemName": "Psionic Crystal",
         "type:": "wondrousItem",
-        "desc": "This fist-sized sapphire vibrates and hums with positive psionic charge."
+        "itemDesc": "This fist-sized sapphire vibrates and hums with positive psionic charge."
         },
         {
-        "id": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "index": 5,
-        "type": "ring",
+        "itemIndex": 5,
+        "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
+        "itemType": "ring",
         "itemName": "Ring of Stoneflesh",
-        "desc": "This heavy ring is made from polished granite and set with pale red quartz."
+        "itemDesc": "This heavy ring is made from polished granite and set with pale red quartz."
         },
         {
-        "id": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "index": 6,
-        "type": "scroll",
+        "itemIndex": 6,
+        "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
+        "itemType": "scroll",
         "itemName": "Scroll of Fireball",
-        "desc": "A spell scroll bears the words of a single spell, written in a mystical cipher."
+        "itemDesc": "A spell scroll bears the words of a single spell, written in a mystical cipher."
         },
         {
-        "id": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "index": 7,
-        "type": "scroll",
+        "itemIndex": 7,
+        "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
+        "itemType": "scroll",
         "itemName": "Potion of Healing",
-        "desc": "Whatever its potency, the potion's red liquid glimmers when agitated.."
+        "itemDesc": "Whatever its potency, the potion's red liquid glimmers when agitated.."
         }
     ]
 }

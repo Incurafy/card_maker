@@ -22,7 +22,6 @@ class CardMakerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var uuid = const Uuid();
-    var id = uuid.v4();
     
     return MaterialApp(
       title: "Card Maker",
@@ -32,7 +31,10 @@ class CardMakerApp extends StatelessWidget {
       ),
       home: DeckScreen(
         title: "Card Deck",
-        itemCards: [ItemCard(id, 0, "Brand", "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues.")],
+        itemCards: [
+          ItemCard(0, uuid.v4(), "Brand", "weapon", "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues."),
+          ItemCard(1, uuid.v4(), "Salamander Flame Gauntlets", "armour", "These dark metal gauntlets were forged using fire from the heart of a salamander."),
+        ],
       )
     );
   }

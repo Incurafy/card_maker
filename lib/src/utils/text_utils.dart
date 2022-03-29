@@ -7,7 +7,6 @@ Widget cardHeaderText(String text) {
     text,
     style: const TextStyle(
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.bold,
       fontSize: 18,
     )
   );

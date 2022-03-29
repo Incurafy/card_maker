@@ -1,7 +1,8 @@
 // deck_screen.dart
 
-import 'package:card_maker/src/card_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:card_maker/src/card_icons.dart';
+import 'package:card_maker/src/card_screen.dart';
 import 'package:card_maker/src/item_card.dart';
 
 // Primary screen, displays the full list of item cards
@@ -19,22 +20,61 @@ class DeckScreen extends StatelessWidget {
         title: const Text("Card Deck"),
       ),
       body: ListView(
-        children: const <Widget>[
+        children: <Widget>[
           Card(
             child: ListTile(
-              leading: Icon(CardIcons.weapon, size: 36),
+              leading: const Icon(CardIcons.weapon, size: 36),
               title:
-                Text("Brand",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                //const Text("Brand",
+                Text(itemCards[0].itemName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.normal,
                     fontSize: 18,
                   )),
               subtitle:
-                Text("Fine greatsword, rare (requires attunement)",
-                  style: TextStyle(
+                Text(itemCards[0].itemId,
+                //const Text("Fine greatsword, rare (requires attunement)",
+                  style: const TextStyle(
                     fontStyle: FontStyle.italic,
                   )
-              ),
+                ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                      CardScreen(itemCard: itemCards[0])
+                  )
+                );
+              }
+            ),
+          ),
+          Card(
+            child: ListTile(
+              leading: const Icon(CardIcons.weapon, size: 36),
+              title:
+                //const Text("Brand",
+                Text(itemCards[1].itemName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                  )),
+              subtitle:
+                Text(itemCards[1].itemId,
+                //const Text("Fine greatsword, rare (requires attunement)",
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                  )
+                ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                      CardScreen(itemCard: itemCards[1])
+                  )
+                );
+              }
             ),
           ),
         ],
@@ -42,7 +82,6 @@ class DeckScreen extends StatelessWidget {
     );
   }
 }
-
 
 /*       body: ListView.builder(
           itemCount: itemCards.length,
