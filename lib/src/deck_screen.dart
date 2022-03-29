@@ -19,84 +19,35 @@ class DeckScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Card Deck"),
       ),
-      body: ListView(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              leading: const Icon(CardIcons.weapon, size: 36),
-              title:
-                //const Text("Brand",
-                Text(itemCards[0].itemName,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 18,
-                  )),
-              subtitle:
-                Text(itemCards[0].itemId,
-                //const Text("Fine greatsword, rare (requires attunement)",
-                  style: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                  )
-                ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                      CardScreen(itemCard: itemCards[0])
-                  )
-                );
-              }
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: const Icon(CardIcons.weapon, size: 36),
-              title:
-                //const Text("Brand",
-                Text(itemCards[1].itemName,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 18,
-                  )),
-              subtitle:
-                Text(itemCards[1].itemId,
-                //const Text("Fine greatsword, rare (requires attunement)",
-                  style: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                  )
-                ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                      CardScreen(itemCard: itemCards[1])
-                  )
-                );
-              }
-            ),
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: itemCards.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: const Icon(CardIcons.weapon, size: 36),
+            title:
+              Text(itemCards[index].itemName,
+                style: const TextStyle(
+                  fontSize: 18,
+                )
+              ),
+            subtitle:
+              Text(itemCards[index].itemId,
+                style: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                )
+              ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                    CardScreen(itemCard: itemCards[index])
+                )
+              );
+            }
+          );
+        }
       ),
     );
   }
 }
-
-/*       body: ListView.builder(
-          itemCount: itemCards.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: cardHeaderText(itemCards[index].itemName),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                      CardScreen(itemCard: itemCards[index])
-                  )
-                );
-              }
-            );
-          }
-        ), */
