@@ -29,13 +29,8 @@ class CardMakerApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(),
         //primarySwatch: Colors.deepPurple,
       ),
-      home: DeckScreen(
+      home: const DeckScreen(
         title: "Card Deck",
-        itemCards: [
-          ItemCard(0, uuid.v4(), "Brand", "weapon", "rare", "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues."),
-          ItemCard(1, uuid.v4(), "Salamander Flame Gauntlets", "armour", "rare", "These dark metal gauntlets were forged using fire from the heart of a salamander."),
-          ItemCard(2, uuid.v4(), "Nimbus, First Staff of the Thunderbirds", "staff", "artifact", "This ancient staff was created when a piece of driftwood was struck by lightning, fusing it to a twisted length of glass made from the sand on which it laid."),
-        ],
       )
     );
   }
