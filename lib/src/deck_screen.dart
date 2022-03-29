@@ -20,7 +20,7 @@ class DeckScreen extends StatefulWidget {
 
 class _DeckScreenState extends State<DeckScreen> {
 
-  late List itemCards;
+  List itemCards = [];
   String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
 
   Future<String> _getData() async {
@@ -31,7 +31,8 @@ class _DeckScreenState extends State<DeckScreen> {
       }
     );
 
-    setState(() {
+    // ignore: unnecessary_this
+    this.setState(() {
       itemCards = jsonDecode(response.body);
     });
 
@@ -41,7 +42,8 @@ class _DeckScreenState extends State<DeckScreen> {
   @override
   // ignore: must_call_super
   void initState() {
-    _getData();
+    // ignore: unnecessary_this
+    this._getData();
   }
 
   @override
@@ -52,7 +54,7 @@ class _DeckScreenState extends State<DeckScreen> {
         title: const Text("Card Deck"),
       ),
       body: ListView.builder(
-        itemCount: itemCards.length,
+        itemCount: itemCards == null ? 0 : itemCards.length,
         itemBuilder: (context, index) {
           Icon typeIcon;
           const double iconSize = 36.0;
