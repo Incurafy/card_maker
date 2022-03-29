@@ -1,7 +1,5 @@
 // item_card.dart
 
-import 'package:uuid/uuid.dart';
-
 // Defines an item card and its properties (many not listed)
 class ItemCard {
   final String id;

@@ -2,13 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/item_card.dart';
+import 'package:card_maker/src/utils/text_utils.dart';
 
 // Display the details of an item card
 class CardScreen extends StatelessWidget {
-  const CardScreen({Key? key, required this.itemCard, required this.cardDetails}) : super(key: key);
+  const CardScreen({Key? key, required this.itemCard,}) : super(key: key);
+  //required this.cardDetails
+
+  static const defPadSize = 16.0;
 
   final ItemCard itemCard;
-  final List<ListItem> cardDetails;
+  //final List<ListItem> cardDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -16,48 +20,29 @@ class CardScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(itemCard.itemName),
       ),
-      // TODO: Use a ListView
+      body:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: defPadSize, top: defPadSize),
+              child: cardHeaderText("Item Card ID"),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: defPadSize),
+              child: cardSubheaderText(itemCard.id)
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: defPadSize, top: defPadSize),
+              child: cardHeaderText("Description"),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: defPadSize),
+              child: cardText(itemCard.itemDesc)
+            )
+          ],
+      ),
     );
   }
-}
-
-// The base class for the different types of items the list can contain.
-abstract class ListItem {
-  // The title line to show in a list item.
-  Widget buildTitle(BuildContext context);
-
-  // The subtitle line, if any, to show in a list item.
-  Widget buildSubtitle(BuildContext context);
-}
-
-// A ListItem that contains data to display a heading.
-class HeadingItem implements ListItem {
-  final String heading;
-
-  HeadingItem(this.heading);
-
-  @override
-  Widget buildTitle(BuildContext context) {
-    return Text(
-      heading,
-      style: Theme.of(context).textTheme.headline5,
-    );
-  }
-
-  @override
-  Widget buildSubtitle(BuildContext context) => const SizedBox.shrink();
-}
-
-// A ListItem that contains data to display a message.
-class MessageItem implements ListItem {
-  final String sender;
-  final String body;
-
-  MessageItem(this.sender, this.body);
-
-  @override
-  Widget buildTitle(BuildContext context) => Text(sender);
-
-  @override
-  Widget buildSubtitle(BuildContext context) => Text(body);
 }

@@ -23,17 +23,17 @@ class DeckScreen extends StatelessWidget {
           itemCount: itemCards.length,
           itemBuilder: (context, index) {
             return ListTile(
-                title: Text(itemCards[index].itemName),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              CardScreen(itemCard: itemCards[index])
-                    )
-                  );
-                }
-              );
+              title: Text(itemCards[index].itemName),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                      CardScreen(itemCard: itemCards[index])
+                  )
+                );
+              }
+            );
           }
         ),
     );

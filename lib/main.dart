@@ -32,7 +32,7 @@ class CardMakerApp extends StatelessWidget {
       ),
       home: DeckScreen(
         title: "Card Deck",
-        itemCards: [ItemCard(id, 0, "Item Name", "This is a description of the item.")],
+        itemCards: [ItemCard(id, 0, "Brand", "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues.")],
       )
     );
   }
