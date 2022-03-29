@@ -16,7 +16,7 @@ class CardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(itemCard.itemName),
+        title: Text(itemCard.name),
       ),
       body:
         Column(
@@ -29,7 +29,7 @@ class CardScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: regPadSize),
-              child: cardSubheaderText(itemCard.itemId)
+              child: cardSubheaderText(itemCard.id)
             ),
             Padding(
               padding: const EdgeInsets.only(left: regPadSize, top: regPadSize, bottom: nrwPadSize),
@@ -37,7 +37,7 @@ class CardScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: regPadSize),
-              child: cardText(itemCard.itemDesc)
+              child: cardText(itemCard.desc)
             )
           ],
       ),
