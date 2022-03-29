@@ -33,7 +33,11 @@ class _DeckScreenState extends State<DeckScreen> {
 
     // ignore: unnecessary_this
     this.setState(() {
-      itemCards = jsonDecode(response.body);
+      var rawItemCards = jsonDecode(response.body);
+      itemCards = [];
+      for (var card in rawItemCards) {
+        itemCards.add(ItemCard.fromJson(card));
+      }
     });
 
     return "Success?";
@@ -59,7 +63,7 @@ class _DeckScreenState extends State<DeckScreen> {
           Icon typeIcon;
           const double iconSize = 36.0;
 
-          switch(itemCards[index]["type"]) {
+          switch(itemCards[index].type) {
             case "weapon": {
               typeIcon = const Icon(CardIcons.weapon, size: iconSize);
             }
@@ -109,13 +113,13 @@ class _DeckScreenState extends State<DeckScreen> {
             child: ListTile(
               leading: typeIcon,
               title:
-                Text(itemCards[index]["name"],
+                Text(itemCards[index].name,
                   style: const TextStyle(
                     fontSize: 18,
                   )
                 ),
               subtitle:
-                Text(itemCards[index]["type"] + ", " + itemCards[index]["rarity"],
+                Text(itemCards[index].type + ", " + itemCards[index].rarity,
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                   )
@@ -125,15 +129,7 @@ class _DeckScreenState extends State<DeckScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                      CardScreen(itemCard: ItemCard(
-                        itemCards[index]["index"],
-                        itemCards[index]["id"],
-                        itemCards[index]["name"],
-                        itemCards[index]["type"],
-                        itemCards[index]["rarity"],
-                        itemCards[index]["desc"],
-                      )
-                    )
+                      CardScreen(itemCard: itemCards[index])
                   )
                 );
               }

@@ -10,4 +10,8 @@ class ItemCard {
   final String desc;
 
   const ItemCard(this.index, this.id, this.name, this.type, this.rarity, this.desc);
+
+  ItemCard.fromJson(Map<String, dynamic> json)
+    : index = json["index"], id = json["id"], name = json["name"], type = json["type"],
+      rarity = json["rarity"], desc = json["desc"];
 }
