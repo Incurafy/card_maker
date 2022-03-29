@@ -1,20 +1,52 @@
 // deck_screen.dart
 
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/card_icons.dart';
 import 'package:card_maker/src/card_screen.dart';
 import 'package:card_maker/src/item_card.dart';
 
-// Primary screen, displays the full list of item cards
-class DeckScreen extends StatelessWidget {
-  const DeckScreen({Key? key, required this.title, required this.itemCards})
-      : super(key: key);
+class DeckScreen extends StatefulWidget {
+  const DeckScreen({ Key? key, required this.title }) : super(key: key);
 
   final String title;
-  final List<ItemCard> itemCards;
+
+  @override
+  State<DeckScreen> createState() => _DeckScreenState();
+}
+
+class _DeckScreenState extends State<DeckScreen> {
+
+  late List itemCards;
+  String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
+
+  Future<String> _getData() async {
+    var response = await http.get(
+      Uri.parse(Uri.encodeFull(db)),
+      headers: {
+        "Accept": "application/json"
+      }
+    );
+
+    setState(() {
+      itemCards = jsonDecode(response.body);
+    });
+
+    return "Success?";
+  }
+
+  @override
+  // ignore: must_call_super
+  void initState() {
+    _getData();
+  }
 
   @override
   Widget build(BuildContext context) {
+    _getData();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Card Deck"),
