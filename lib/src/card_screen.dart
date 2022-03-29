@@ -7,12 +7,9 @@ import 'package:card_maker/src/utils/text_utils.dart';
 // Display the details of an item card
 class CardScreen extends StatelessWidget {
   const CardScreen({Key? key, required this.itemCard,}) : super(key: key);
-  //required this.cardDetails
-
-  static const defPadSize = 16.0;
-
+  
   final ItemCard itemCard;
-  //final List<ListItem> cardDetails;
+  static const defPadSize = 16.0;
 
   @override
   Widget build(BuildContext context) {

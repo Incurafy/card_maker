@@ -13,6 +13,8 @@ Widget cardHeaderText(String text) {
   );
 }
 
+// This is likely unnecessary in this context. Possibly useful for a version
+// that converts widgets into an image to generate a saveable magic item card.
 Widget cardSubheaderText(String text) {
   return Text(
     text,
