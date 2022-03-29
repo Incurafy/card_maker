@@ -71,29 +71,31 @@ class DeckScreen extends StatelessWidget {
             }
           }
 
-          return ListTile(
-            leading: typeIcon,
-            title:
-              Text(itemCards[index].name,
-                style: const TextStyle(
-                  fontSize: 18,
-                )
-              ),
-            subtitle:
-              Text(itemCards[index].type + ", " + itemCards[index].rarity,
-                style: const TextStyle(
-                  fontStyle: FontStyle.italic,
-                )
-              ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                    CardScreen(itemCard: itemCards[index])
-                )
-              );
-            }
+          return Card(
+            child: ListTile(
+              leading: typeIcon,
+              title:
+                Text(itemCards[index].name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                  )
+                ),
+              subtitle:
+                Text(itemCards[index].type + ", " + itemCards[index].rarity,
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                  )
+                ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                      CardScreen(itemCard: itemCards[index])
+                  )
+                );
+              }
+            )
           );
         }
       ),
