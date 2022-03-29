@@ -10,9 +10,7 @@ import 'package:card_maker/src/card_screen.dart';
 import 'package:card_maker/src/item_card.dart';
 
 class DeckScreen extends StatefulWidget {
-  const DeckScreen({ Key? key, required this.title }) : super(key: key);
-
-  final String title;
+  const DeckScreen({ Key? key }) : super(key: key);
 
   @override
   State<DeckScreen> createState() => _DeckScreenState();
@@ -31,8 +29,7 @@ class _DeckScreenState extends State<DeckScreen> {
       }
     );
 
-    // ignore: unnecessary_this
-    this.setState(() {
+    setState(() {
       var rawItemCards = jsonDecode(response.body);
       itemCards = [];
       for (var card in rawItemCards) {
@@ -46,22 +43,20 @@ class _DeckScreenState extends State<DeckScreen> {
   @override
   // ignore: must_call_super
   void initState() {
-    // ignore: unnecessary_this
-    this._getData();
+    _getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    _getData();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Card Deck"),
       ),
       body: ListView.builder(
-        itemCount: itemCards == null ? 0 : itemCards.length,
+        itemCount: itemCards.length,
         itemBuilder: (context, index) {
           Icon typeIcon;
-          const double iconSize = 36.0;
+          const double iconSize = 32.0;
 
           switch(itemCards[index].type) {
             case "weapon": {

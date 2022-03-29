@@ -16,9 +16,7 @@ class CardMakerApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(),
         //primarySwatch: Colors.deepPurple,
       ),
-      home: const DeckScreen(
-        title: "Card Deck",
-      )
+      home: const DeckScreen()
     );
   }
 }
