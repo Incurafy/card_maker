@@ -125,7 +125,15 @@ class _DeckScreenState extends State<DeckScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                      CardScreen(itemCard: itemCards[index])
+                      CardScreen(itemCard: ItemCard(
+                        itemCards[index]["index"],
+                        itemCards[index]["id"],
+                        itemCards[index]["name"],
+                        itemCards[index]["type"],
+                        itemCards[index]["rarity"],
+                        itemCards[index]["desc"],
+                      )
+                    )
                   )
                 );
               }
