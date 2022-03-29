@@ -59,7 +59,7 @@ class _DeckScreenState extends State<DeckScreen> {
           Icon typeIcon;
           const double iconSize = 36.0;
 
-          switch(itemCards[index].type) {
+          switch(itemCards[index]["type"]) {
             case "weapon": {
               typeIcon = const Icon(CardIcons.weapon, size: iconSize);
             }
@@ -109,13 +109,13 @@ class _DeckScreenState extends State<DeckScreen> {
             child: ListTile(
               leading: typeIcon,
               title:
-                Text(itemCards[index].name,
+                Text(itemCards[index]["name"],
                   style: const TextStyle(
                     fontSize: 18,
                   )
                 ),
               subtitle:
-                Text(itemCards[index].type + ", " + itemCards[index].rarity,
+                Text(itemCards[index]["type"] + ", " + itemCards[index]["rarity"],
                   style: const TextStyle(
                     fontStyle: FontStyle.italic,
                   )
