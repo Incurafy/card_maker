@@ -2,11 +2,16 @@
 
 // Defines an item card and its properties (many not listed)
 class ItemCard {
-  final int itemIndex;
-  final String itemId;
-  final String itemName;
-  final String itemType;
-  final String itemDesc;
+  final int index;
+  final String id;
+  final String name;
+  final String type;
+  final String rarity;
+  final String desc;
 
-  const ItemCard(this.itemIndex, this.itemId, this.itemName, this.itemType, this.itemDesc);
+  const ItemCard(this.index, this.id, this.name, this.type, this.rarity, this.desc);
+
+  ItemCard.fromJson(Map<String, dynamic> json)
+    : index = json["index"], id = json["id"], name = json["name"], type = json["type"],
+      rarity = json["rarity"], desc = json["desc"];
 }

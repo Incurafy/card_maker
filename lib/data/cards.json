@@ -3,58 +3,67 @@
         {
         "itemIndex": 0,
         "itemId": "4fb07e96-7ee1-4803-8125-96235b5ab233",
-        "itemType": "weapon",
         "itemName": "Brand",
+        "itemType": "weapon",
+        "rarity": "rare",
         "itemDesc": "This five-foot long ardite greatsword has a narrow blade and a hilt of wrought iron wrapped in grey leather. The blade is warm to the touch and shimmers with brilliant red and orange hues."
         },
         {
         "itemIndex": 1,
         "itemId": "7ae02f17-25b3-472f-9d28-a8d7286d5fc9",
-        "itemType": "armour",
+
         "itemName": "Salamander Flame Gauntlets",
+        "itemType": "armour",
+        "rarity": "rare",
         "itemDesc": "These dark metal gauntlets were forged using fire from the heart of a salamander."
         },
         {
         "itemIndex": 2,
         "itemId": "adf0a66c-e32f-4a14-922e-2d2c67c9bb6e",
-        "itemType": "staff",
         "itemName": "Nimbus, First Staff of the Thunderbirds",
+        "itemType": "staff",
+        "rarity": "artifact",
         "itemDesc": "This ancient staff was created when a piece of driftwood was struck by lightning, fusing it to a twisted length of glass made from the sand on which it laid."
         },
         {
         "itemIndex": 3,
         "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "itemType": "wand",
         "itemName": "Direstone Wand",
+        "itemType": "wand",
+        "rarity": "rare",
         "itemDesc": "A rigid stone wand used by the arcane dwarves of the Direstone mines."
         },
         {
         "itemIndex": 4,
         "itemId": "da37f03f-9bc1-4d0c-b764-33f352c74dc8",
         "itemName": "Psionic Crystal",
-        "type:": "wondrousItem",
+        "itemType:": "wondrousItem",
+        "rarity": "uncommon",
         "itemDesc": "This fist-sized sapphire vibrates and hums with positive psionic charge."
         },
         {
         "itemIndex": 5,
         "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "itemType": "ring",
         "itemName": "Ring of Stoneflesh",
+        "itemType": "ring",
+        "rarity": "rare",
         "itemDesc": "This heavy ring is made from polished granite and set with pale red quartz."
         },
         {
         "itemIndex": 6,
         "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "itemType": "scroll",
         "itemName": "Scroll of Fireball",
+        "itemType": "scroll",
+        "rarity": "uncommon",
         "itemDesc": "A spell scroll bears the words of a single spell, written in a mystical cipher."
         },
         {
         "itemIndex": 7,
         "itemId": "c14b5df1-8efa-4570-bea3-22910f179e3a",
-        "itemType": "scroll",
         "itemName": "Potion of Healing",
-        "itemDesc": "Whatever its potency, the potion's red liquid glimmers when agitated.."
+        "itemType": "potion",
+        "rarity": "common",
+        "itemDesc": "Whatever its potency, the potion's red liquid glimmers when agitated."
         }
     ]
 }
