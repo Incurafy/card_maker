@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:card_maker/src/new_card_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/card_screen.dart';
@@ -75,8 +76,7 @@ class _DeckScreenState extends State<DeckScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                      CardScreen(itemCard: itemCards[index])
+                    builder: (context) => CardScreen(itemCard: itemCards[index])
                   )
                 );
               }
@@ -84,6 +84,19 @@ class _DeckScreenState extends State<DeckScreen> {
           );
         }
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewCardScreen(),
+            )
+          );
+        },
+        tooltip: 'New Card',
+        child: const Icon(Icons.add),
+      ),
     );
   }
+
 }
