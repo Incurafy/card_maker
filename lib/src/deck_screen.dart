@@ -5,7 +5,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:card_maker/src/card_icons.dart';
 import 'package:card_maker/src/card_screen.dart';
 import 'package:card_maker/src/item_card.dart';
 
@@ -54,56 +53,9 @@ class _DeckScreenState extends State<DeckScreen> {
       ),
       body: ListView.builder(
         itemCount: itemCards.length,
-        itemBuilder: (context, index) {
-          Icon typeIcon;
-          const double iconSize = 32.0;
-
-          switch(itemCards[index].type) {
-            case "weapon": {
-              typeIcon = const Icon(CardIcons.weapon, size: iconSize);
-            }
-            break;
-
-            case "armour": {
-              typeIcon = const Icon(CardIcons.armour, size: iconSize);
-            }
-            break;
-
-            case "staff": {
-              typeIcon = const Icon(CardIcons.staff, size: iconSize);
-            }
-            break;
-
-            case "wand": {
-              typeIcon = const Icon(CardIcons.wand, size: iconSize);
-            }
-            break;
-
-            case "wondrousItem": {
-              typeIcon = const Icon(CardIcons.wondrousItem, size: iconSize);
-            }
-            break;
-
-            case "ring": {
-              typeIcon = const Icon(CardIcons.ring, size: iconSize);
-            }
-            break;
-
-            case "scroll": {
-              typeIcon = const Icon(CardIcons.scroll, size: iconSize);
-            }
-            break;
-
-            case "potion": {
-              typeIcon = const Icon(CardIcons.potion, size: iconSize);
-            }
-            break;
-
-            default: {
-              typeIcon = const Icon(CardIcons.wondrousItem, size: iconSize);
-            }
-          }
-
+        itemBuilder: (context, index) {          
+          ItemCard dummyCard = const ItemCard(-1, "id", "name", "type", "rarity", "desc");
+          Icon typeIcon = dummyCard.chooseIcon(itemCards, index);
           return Card(
             child: ListTile(
               leading: typeIcon,
