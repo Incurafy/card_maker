@@ -1,6 +1,7 @@
 // new_card_screen.dart
 
-import 'package:card_maker/src/utils/text_utils.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -12,7 +13,7 @@ class NewCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var typeOptions = ["Weapon", "Armour", "Staff", "Wand", "Wondrous Item", "Ring", "Scroll", "Potion"];
+    var typeOptions = ["Weapon", "Armour", "Staff", "Wand", "Ring", "Wondrous Item", "Scroll", "Potion"];
     var rarityOptions = ["Common", "Uncommon", "Rare", "Very Rare", "Legendary", "Artifact"];
 
     return Scaffold(
@@ -26,15 +27,25 @@ class NewCardScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column (
               children: [
-                FormBuilderTextField( // Name field
+                // Name field
+                FormBuilderTextField(
                   name: "name",
                   decoration: const InputDecoration(
                     labelText: "Name",
-                    hintText: "The One Ring"
-                  ),
+                    hintText: "The One Ring"),
+                  validator: (val) {
+                    if (_formKey.currentState?.fields["name"]?.value
+                        == "" || (val == null || val.isEmpty)) {
+                      return "What kind of magic item doesn't have a name?!";
+                    }
+                    return null;
+                  },
                 ),
+
                 const SizedBox(height: 16.0),
-                FormBuilderDropdown( // Type field
+
+                // Type field
+                FormBuilderDropdown(
                   name: "type",
                   decoration: const InputDecoration(
                     labelText: "Type",
@@ -45,9 +56,19 @@ class NewCardScreen extends StatelessWidget {
                       child: Text(type),
                     )
                   ).toList(),
+                  validator: (val) {
+                    if (_formKey.currentState?.fields["desc"]?.value == ""
+                        || val == null) {
+                      return "Typeless? How can it be typeless?!";
+                    }
+                    return null;
+                  },
                 ),
+
                 const SizedBox(height: 16.0),
-                FormBuilderDropdown( // Type field
+
+                // Rarity field
+                FormBuilderDropdown(
                   name: "rarity",
                   decoration: const InputDecoration(
                     labelText: "Rarity",
@@ -58,29 +79,67 @@ class NewCardScreen extends StatelessWidget {
                       child: Text(rarity),
                     )
                   ).toList(),
+                  validator: (val) {
+                    if (_formKey.currentState?.fields["desc"]?.value == ""
+                        || val == null) {
+                      return "If you think it's so priceless, call it an artifact!";
+                    }
+                    return null;
+                  },
                 ),
+
                 const SizedBox(height: 16.0),
-                FormBuilderTextField( // Description field
-                  name: "descField",
+
+                // Desription field
+                FormBuilderTextField(
+                  name: "desc",
                   decoration: const InputDecoration(
                     labelText: "Description",
                     hintText: "Forged in the fires of Mount Doom, this ring...",
                   ),
+                  validator: (val) {
+                    if (_formKey.currentState?.fields["desc"]?.value == ""
+                        || (val == null || val.isEmpty)) {
+                      return "I don't care if it's made of the stuff of limbo, describe it!";
+                    }
+                    return null;
+                  },
                 ),
-                const SizedBox(height: 20.0),
+                
+                const SizedBox(height: 30.0),
+
+                // Add and Reset buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton( // Add button
+                    // Add button
+                    ElevatedButton(
                       onPressed: () {
-                        final nameData =
-                          _formKey.currentState!.fields["name"]!.value;
-                        
+                        final isValid = _formKey.currentState?.validate();
+
+                        if (isValid!) {
+                          // Generate a unique ID for this card
+                          //var uuid = const Uuid();
+                          //var id = uuid.v4();
+                          _formKey.currentState!.save();
+                          final formData = _formKey.currentState!.value;
+                          print(formData);
+
+                          _formKey.currentState!.reset();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content:
+                              Text("New card added to the deck!")
+                            )
+                          );
+                        }
+
                         FocusScope.of(context).unfocus();
                       },
                       child: const Text("Add"),
                     ),
-                    ElevatedButton( // Reset button
+
+                    // Reset button
+                    ElevatedButton(
                       onPressed: () {
                         _formKey.currentState!.reset();
                         FocusScope.of(context).unfocus();

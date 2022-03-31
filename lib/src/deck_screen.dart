@@ -17,7 +17,7 @@ class DeckScreen extends StatefulWidget {
 }
 
 class _DeckScreenState extends State<DeckScreen> {
-
+  
   List itemCards = [];
   String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
 
