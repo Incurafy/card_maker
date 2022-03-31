@@ -1,8 +1,5 @@
 // new_card_screen.dart
 
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:card_maker/src/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -14,33 +11,7 @@ class NewCardScreen extends StatefulWidget {
 }
 
 class _NewCardScreenState extends State<NewCardScreen> {
-  Future<ItemCard>? _futureItemCard;
-
   final _formKey = GlobalKey<FormBuilderState>();
-
-  Future<ItemCard> createItemCard(String id, name, type, rarity, desc) async {
-    String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
-
-    final response = await http.post(
-      Uri.parse(db),
-      headers: <String, String>{
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: jsonEncode(<String, String>{
-        "id": id,
-        "name": name,
-        "type": type,
-        "rarity": rarity,
-        "desc": desc
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      return ItemCard.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception("Failed to create an item card.");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +34,8 @@ class _NewCardScreenState extends State<NewCardScreen> {
                   name: "name",
                   decoration: const InputDecoration(
                     labelText: "Name",
-                    hintText: "The One Ring"),
+                    hintText: "The One Ring"
+                  ),
                   validator: (val) {
                     if (_formKey.currentState?.fields["name"]?.value
                         == "" || (val == null || val.isEmpty)) {
@@ -150,15 +122,10 @@ class _NewCardScreenState extends State<NewCardScreen> {
 
                         if (isValid!) {
                           _formKey.currentState!.save();
-                          final formData = _formKey.currentState!.value;
-                          print(formData);
+                          final _formData = _formKey.currentState!.value;
+                          print(_formData);
 
-                          ////////////////////////////////
-                          // TODO: Fix this with similar thing to the ItemCard factory
-                          setState(() {
-                            _futureItemCard = createItemCard(formData);
-                          });
-                          ////////////////////////////////
+                          // todo: Something probably needs to go here.
 
                           _formKey.currentState!.reset();
                           ScaffoldMessenger.of(context).showSnackBar(

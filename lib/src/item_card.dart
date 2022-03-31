@@ -27,6 +27,20 @@ class ItemCard {
     );
   }
 
+  dynamic toJson() => {
+      "id": id,
+      "name": name,
+      "type": type,
+      "rarity": rarity,
+      "desc": desc 
+  };
+
+  @override
+  String toString() {
+    return "{id: " + id + ", name: " + name + ", type:" + type +
+           ", rarity: " + rarity + ", desc: " + desc + "}";
+  }
+
   // Choose which icon a card should use based on its type
   Icon chooseIcon(itemCards, index) {
     const double iconSize = 32.0;
