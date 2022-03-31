@@ -25,7 +25,7 @@ class CardScreen extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: regPadSize, top: regPadSize, bottom: nrwPadSize),
-              child: cardHeaderText("Item Card ID"),
+              child: cardHeaderText("Unique Item Card ID"),
             ),
             Padding(
               padding: const EdgeInsets.only(left: regPadSize),

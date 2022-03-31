@@ -1,15 +1,46 @@
 // new_card_screen.dart
 
-import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:card_maker/src/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
-class NewCardScreen extends StatelessWidget {
-  NewCardScreen({ Key? key }) : super(key: key);
+class NewCardScreen extends StatefulWidget {
+    const NewCardScreen({ Key? key }) : super(key: key);
+
+  @override
+  State<NewCardScreen> createState() => _NewCardScreenState();
+}
+
+class _NewCardScreenState extends State<NewCardScreen> {
+  Future<ItemCard>? _futureItemCard;
 
   final _formKey = GlobalKey<FormBuilderState>();
+
+  Future<ItemCard> createItemCard(String id, name, type, rarity, desc) async {
+    String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
+
+    final response = await http.post(
+      Uri.parse(db),
+      headers: <String, String>{
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: jsonEncode(<String, String>{
+        "id": id,
+        "name": name,
+        "type": type,
+        "rarity": rarity,
+        "desc": desc
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      return ItemCard.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception("Failed to create an item card.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,16 +145,20 @@ class NewCardScreen extends StatelessWidget {
                   children: [
                     // Add button
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final isValid = _formKey.currentState?.validate();
 
                         if (isValid!) {
-                          // Generate a unique ID for this card
-                          //var uuid = const Uuid();
-                          //var id = uuid.v4();
                           _formKey.currentState!.save();
                           final formData = _formKey.currentState!.value;
                           print(formData);
+
+                          ////////////////////////////////
+                          // TODO: Fix this with similar thing to the ItemCard factory
+                          setState(() {
+                            _futureItemCard = createItemCard(formData);
+                          });
+                          ////////////////////////////////
 
                           _formKey.currentState!.reset();
                           ScaffoldMessenger.of(context).showSnackBar(

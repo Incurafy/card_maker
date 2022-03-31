@@ -55,7 +55,7 @@ class _DeckScreenState extends State<DeckScreen> {
       body: ListView.builder(
         itemCount: itemCards.length,
         itemBuilder: (context, index) {          
-          ItemCard dummyCard = const ItemCard(-1, "id", "name", "type", "rarity", "desc");
+          ItemCard dummyCard = const ItemCard(id: "id", name: "name", type: "type", rarity: "rarity", desc: "desc");
           Icon typeIcon = dummyCard.chooseIcon(itemCards, index);
           return Card(
             child: ListTile(
