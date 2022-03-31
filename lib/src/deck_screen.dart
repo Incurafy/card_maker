@@ -16,8 +16,7 @@ class DeckScreen extends StatefulWidget {
   State<DeckScreen> createState() => _DeckScreenState();
 }
 
-class _DeckScreenState extends State<DeckScreen> {
-  
+class _DeckScreenState extends State<DeckScreen> {  
   List itemCards = [];
   String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
 
@@ -31,7 +30,7 @@ class _DeckScreenState extends State<DeckScreen> {
 
     setState(() {
       var rawItemCards = jsonDecode(response.body);
-      itemCards = [];
+      //itemCards = [];
       for (var card in rawItemCards) {
         itemCards.add(ItemCard.fromJson(card));
       }
@@ -89,7 +88,7 @@ class _DeckScreenState extends State<DeckScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NewCardScreen(),
+              builder: (context) => const NewCardScreen(),
             )
           );
         },
