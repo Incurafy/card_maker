@@ -1,7 +1,11 @@
 // new_card_screen.dart
 
+import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:card_maker/src/data_handler.dart';
+import 'package:card_maker/src/item_card.dart';
+
 
 class NewCardScreen extends StatefulWidget {
     const NewCardScreen({ Key? key }) : super(key: key);
@@ -15,8 +19,12 @@ class _NewCardScreenState extends State<NewCardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var typeOptions = ["Weapon", "Armour", "Staff", "Wand", "Ring", "Wondrous Item", "Scroll", "Potion"];
-    var rarityOptions = ["Common", "Uncommon", "Rare", "Very Rare", "Legendary", "Artifact"];
+    DataHandler dataHandler = DataHandler();
+    Future<ItemCard>? _futureItemCard;
+    Uuid uuid = Uuid();
+
+    List typeOptions = ["weapon", "armour", "staff", "wand", "ring", "wondrousItem", "scroll", "potion"];
+    List rarityOptions = ["common", "uncommon", "rare", "very rare", "legendary", "artifact"];
 
     return Scaffold(
       appBar: AppBar(
@@ -125,7 +133,15 @@ class _NewCardScreenState extends State<NewCardScreen> {
                           final _formData = _formKey.currentState!.value;
                           print(_formData);
 
-                          // todo: Something probably needs to go here.
+                          setState(() {
+                            _futureItemCard = dataHandler.createItemCard(
+                              uuid.v4(),                     // Random Unique ID
+                              _formData.values.elementAt(0), // Name
+                              _formData.values.elementAt(1), // Type
+                              _formData.values.elementAt(2), // Rarity
+                              _formData.values.elementAt(3)  // Description
+                            );
+                          });
 
                           _formKey.currentState!.reset();
                           ScaffoldMessenger.of(context).showSnackBar(

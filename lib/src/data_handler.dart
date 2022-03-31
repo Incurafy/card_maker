@@ -25,8 +25,7 @@ class DataHandler {
   }
 
   Future<ItemCard> createItemCard(String id, name, type, rarity, desc) async {
-    final response = await http.post(
-      Uri.parse(db),
+    final response = await http.post(Uri.parse(db),
       headers: <String, String>{
         "Content-Type": "application/json; charset=UTF-8",
       },
