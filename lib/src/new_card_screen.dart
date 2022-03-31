@@ -8,7 +8,7 @@ import 'package:card_maker/src/item_card.dart';
 
 
 class NewCardScreen extends StatefulWidget {
-    const NewCardScreen({ Key? key }) : super(key: key);
+  const NewCardScreen({Key? key}) : super(key: key);
 
   @override
   State<NewCardScreen> createState() => _NewCardScreenState();
@@ -16,12 +16,13 @@ class NewCardScreen extends StatefulWidget {
 
 class _NewCardScreenState extends State<NewCardScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
+  DataHandler dataHandler = DataHandler();
+  Uuid uuid = const Uuid();
 
   @override
   Widget build(BuildContext context) {
-    DataHandler dataHandler = DataHandler();
+    // ignore: unused_local_variable
     Future<ItemCard>? _futureItemCard;
-    Uuid uuid = Uuid();
 
     List typeOptions = ["weapon", "armour", "staff", "wand", "ring", "wondrousItem", "scroll", "potion"];
     List rarityOptions = ["common", "uncommon", "rare", "very rare", "legendary", "artifact"];
@@ -131,7 +132,6 @@ class _NewCardScreenState extends State<NewCardScreen> {
                         if (isValid!) {
                           _formKey.currentState!.save();
                           final _formData = _formKey.currentState!.value;
-                          print(_formData);
 
                           setState(() {
                             _futureItemCard = dataHandler.createItemCard(
@@ -150,7 +150,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
                             )
                           );
                         }
-
+                        
                         FocusScope.of(context).unfocus();
                       },
                       child: const Text("Add"),

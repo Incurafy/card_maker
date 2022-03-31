@@ -23,6 +23,12 @@ class _DeckScreenState extends State<DeckScreen> {
     futureItemCards = dataHandler.fetchItemCards();
   }
 
+  refreshDeck() {
+    setState(() {
+      futureItemCards = dataHandler.fetchItemCards();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +40,6 @@ class _DeckScreenState extends State<DeckScreen> {
           future: futureItemCards,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              //print(snapshot.data);
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
