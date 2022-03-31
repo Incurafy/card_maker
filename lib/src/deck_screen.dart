@@ -1,13 +1,10 @@
 // deck_screen.dart
 
-import 'dart:async';
-import 'dart:convert';
-
-import 'package:card_maker/src/new_card_screen.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:card_maker/src/card_screen.dart';
+import 'package:card_maker/src/data_handler.dart';
 import 'package:card_maker/src/item_card.dart';
+import 'package:card_maker/src/new_card_screen.dart';
+import 'package:card_maker/src/card_screen.dart';
 
 class DeckScreen extends StatefulWidget {
   const DeckScreen({ Key? key }) : super(key: key);
@@ -16,33 +13,14 @@ class DeckScreen extends StatefulWidget {
   State<DeckScreen> createState() => _DeckScreenState();
 }
 
-class _DeckScreenState extends State<DeckScreen> {  
-  List itemCards = [];
-  String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
-
-  Future<String> _getData() async {
-    var response = await http.get(
-      Uri.parse(Uri.encodeFull(db)),
-      headers: {
-        "Accept": "application/json"
-      }
-    );
-
-    setState(() {
-      var rawItemCards = jsonDecode(response.body);
-      //itemCards = [];
-      for (var card in rawItemCards) {
-        itemCards.add(ItemCard.fromJson(card));
-      }
-    });
-
-    return "Success?";
-  }
+class _DeckScreenState extends State<DeckScreen> {
+  DataHandler dataHandler = DataHandler();
+  late Future<List<ItemCard>> futureItemCards;
 
   @override
-  // ignore: must_call_super
   void initState() {
-    _getData();
+    super.initState();
+    futureItemCards = dataHandler.fetchItemCards();
   }
 
   @override
@@ -51,37 +29,55 @@ class _DeckScreenState extends State<DeckScreen> {
       appBar: AppBar(
         title: const Text("Card Deck"),
       ),
-      body: ListView.builder(
-        itemCount: itemCards.length,
-        itemBuilder: (context, index) {          
-          ItemCard dummyCard = const ItemCard(id: "id", name: "name", type: "type", rarity: "rarity", desc: "desc");
-          Icon typeIcon = dummyCard.chooseIcon(itemCards, index);
-          return Card(
-            child: ListTile(
-              leading: typeIcon,
-              title:
-                Text(itemCards[index].name,
-                  style: const TextStyle(
-                    fontSize: 18,
-                  )
-                ),
-              subtitle:
-                Text(itemCards[index].type + ", " + itemCards[index].rarity,
-                  style: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                  )
-                ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CardScreen(itemCard: itemCards[index])
-                  )
-                );
-              }
-            )
-          );
-        }
+      body: Center (
+        child: FutureBuilder<List<ItemCard>>(
+          future: futureItemCards,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              //print(snapshot.data);
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  Icon typeIcon = dataHandler.chooseIcon(snapshot.data, index);
+                  return Card(
+                    child: ListTile(
+                      leading: typeIcon,
+                      title:
+                        Text(
+                          snapshot.data!.elementAt(index).name,
+                          style: const TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      subtitle: 
+                        Text(
+                          snapshot.data!.elementAt(index).type + ", "
+                             + snapshot.data!.elementAt(index).rarity,
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                          )
+                        ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:(context) => 
+                              CardScreen(
+                                itemCard: snapshot.data!.elementAt(index)),
+                          )
+                        );
+                      },
+                    ),
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text("ERROR: ${snapshot.error}");
+            }
+
+            return const CircularProgressIndicator();
+          },
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
