@@ -38,21 +38,21 @@ class _DeckScreenState extends State<DeckScreen> {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  Icon typeIcon = dataHandler.chooseIcon(snapshot.data, index);
+                  List<ItemCard>? itemCards = snapshot.data;
+                  Icon typeIcon = dataHandler.chooseIcon(itemCards, index);
                   return Card(
                     child: ListTile(
                       leading: typeIcon,
                       title:
                         Text(
-                          snapshot.data!.elementAt(index).name,
+                          itemCards![index].name,
                           style: const TextStyle(
                             fontSize: 18,
                           ),
                         ),
                       subtitle: 
                         Text(
-                          snapshot.data!.elementAt(index).type + ", "
-                             + snapshot.data!.elementAt(index).rarity,
+                          itemCards[index].type + ", " + itemCards[index].rarity,
                           style: const TextStyle(
                             fontStyle: FontStyle.italic,
                           )
@@ -63,7 +63,8 @@ class _DeckScreenState extends State<DeckScreen> {
                           MaterialPageRoute(
                             builder:(context) => 
                               CardScreen(
-                                itemCard: snapshot.data!.elementAt(index)),
+                                itemCard: itemCards[index],
+                              )
                           )
                         );
                       },
