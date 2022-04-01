@@ -1,3 +1,3 @@
 # card_maker
 
-Learning Flutter by making a magic item card maker and storage app for 5e.
+Learning Flutter by building a magic item card maker and storage app for D&D5e.
