@@ -6,7 +6,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:card_maker/src/data_handler.dart';
 import 'package:card_maker/src/item_card.dart';
 
-
 class NewCardScreen extends StatefulWidget {
   const NewCardScreen({Key? key}) : super(key: key);
 

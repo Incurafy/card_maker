@@ -13,12 +13,16 @@ class DataHandler {
   //String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
   String db = "http://incurafy.aoakuma.com:9001/cards";
 
-  Future<List<ItemCard>> fetchItemCards() async {
+  Future<List<ItemCard>> fetchItemCards(bool shouldAlphabetise) async {
     final response = await http.get(Uri.parse(db));
     final futureItemCards = response.body.jsonList((e) => ItemCard.fromJson(e));
 
     if (response.statusCode == 200) {
-      //print("Status code: 200 (OK)");
+      if (shouldAlphabetise) {
+        futureItemCards.sort((a, b) {
+          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+        });
+      }
       return futureItemCards;
     } else {
       throw Exception("Failed to load item card.");

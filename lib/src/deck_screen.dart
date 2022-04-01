@@ -1,10 +1,12 @@
 // deck_screen.dart
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:card_maker/src/data_handler.dart';
 import 'package:card_maker/src/item_card.dart';
 import 'package:card_maker/src/new_card_screen.dart';
-import 'package:card_maker/src/card_screen.dart';
+import 'package:card_maker/src/card_details_screen.dart';
 
 class DeckScreen extends StatefulWidget {
   const DeckScreen({ Key? key }) : super(key: key);
@@ -20,13 +22,34 @@ class _DeckScreenState extends State<DeckScreen> {
   @override
   void initState() {
     super.initState();
-    futureItemCards = dataHandler.fetchItemCards();
+    futureItemCards = dataHandler.fetchItemCards(true);
   }
 
-  refreshDeck() {
-    setState(() {
-      futureItemCards = dataHandler.fetchItemCards();
-    });
+  FutureOr updateDeckScreen(dynamic value) {
+    futureItemCards = dataHandler.fetchItemCards(true);
+    setState(() {});
+  }
+
+  void navCardDetailsScreen(List<ItemCard>? itemCards, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:(context) => 
+          CardDetailsScreen(
+            itemCard: itemCards![index],
+          )
+      )
+    );
+  }
+
+  void navNewCardScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+        const NewCardScreen(),
+      )
+    ).then(updateDeckScreen);
   }
 
   @override
@@ -63,15 +86,7 @@ class _DeckScreenState extends State<DeckScreen> {
                           )
                         ),
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:(context) => 
-                              CardScreen(
-                                itemCard: itemCards[index],
-                              )
-                          )
-                        );
+                        navCardDetailsScreen(itemCards, index);
                       },
                     ),
                   );
@@ -87,12 +102,7 @@ class _DeckScreenState extends State<DeckScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const NewCardScreen(),
-            )
-          );
+          navNewCardScreen();
         },
         tooltip: 'New Card',
         child: const Icon(Icons.add),

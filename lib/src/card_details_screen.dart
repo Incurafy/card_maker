@@ -5,8 +5,8 @@ import 'package:card_maker/src/item_card.dart';
 import 'package:card_maker/src/utils/text_utils.dart';
 
 // Display the details of an item card
-class CardScreen extends StatelessWidget {
-  const CardScreen({Key? key, required this.itemCard,}) : super(key: key);
+class CardDetailsScreen extends StatelessWidget {
+  const CardDetailsScreen({Key? key, required this.itemCard,}) : super(key: key);
   
   final ItemCard itemCard;
   static const regPadSize = 16.0;
