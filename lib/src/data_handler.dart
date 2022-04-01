@@ -10,11 +10,11 @@ import 'package:card_maker/src/item_card.dart';
 import 'package:card_maker/src/card_icons.dart';
 
 class DataHandler {
-  //String db = "http://my-json-server.typicode.com/incurafy/demo/cards";
-  String db = "http://incurafy.aoakuma.com:9001/cards";
+  //String database = "http://my-json-server.typicode.com/incurafy/demo/cards";
+  String database = "http://incurafy.aoakuma.com:9001/cards";
 
   Future<List<ItemCard>> fetchItemCards(bool shouldAlphabetise) async {
-    final response = await http.get(Uri.parse(db));
+    final response = await http.get(Uri.parse(database));
     final futureItemCards = response.body.jsonList((e) => ItemCard.fromJson(e));
 
     if (response.statusCode == 200) {
@@ -25,12 +25,12 @@ class DataHandler {
       }
       return futureItemCards;
     } else {
-      throw Exception("Failed to load item card.");
+      throw Exception("Failed to load item cards.");
     }
   }
 
   Future<ItemCard> createItemCard(String id, name, type, rarity, desc) async {
-    final response = await http.post(Uri.parse(db),
+    final response = await http.post(Uri.parse(database),
       headers: <String, String>{
         "Content-Type": "application/json; charset=UTF-8",
       },
@@ -50,11 +50,10 @@ class DataHandler {
       throw Exception("Failed to create an item card.");
     }
   }
-
+  
   Future<http.Response> deleteItemCard(String id) async {
-    final http.Response response = await http.delete(
-      Uri.parse(db),
-      headers: <String, String> {
+    final http.Response response = await http.delete(Uri.parse(database + "/$id"),
+      headers: <String, String>{
         "Content-Type": "application/json; charset=UTF-8",
       },
     );
