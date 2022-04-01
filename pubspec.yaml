@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   uuid: ^3.0.6
   http: ^0.13.4
+  flutter_form_builder: ^7.1.1
+  form_builder_validators: ^7.8.0
+  json_helpers: ^0.1.5
 
 dev_dependencies:
   flutter_test:

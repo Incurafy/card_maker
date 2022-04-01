@@ -1,17 +1,43 @@
 // item_card.dart
 
-// Defines an item card and its properties (many not listed)
 class ItemCard {
-  final int index;
   final String id;
   final String name;
   final String type;
   final String rarity;
   final String desc;
 
-  const ItemCard(this.index, this.id, this.name, this.type, this.rarity, this.desc);
+  const ItemCard(
+      {required this.id,
+      required this.name,
+      required this.type,
+      required this.rarity,
+      required this.desc});
 
-  ItemCard.fromJson(Map<String, dynamic> json)
-    : index = json["index"], id = json["id"], name = json["name"], type = json["type"],
-      rarity = json["rarity"], desc = json["desc"];
+  factory ItemCard.fromJson(Map<String, dynamic> json) {
+    return ItemCard(
+        id: json["id"],
+        name: json["name"],
+        type: json["type"],
+        rarity: json["rarity"],
+        desc: json["desc"]);
+  }
+
+  dynamic toJson() =>
+      {"id": id, "name": name, "type": type, "rarity": rarity, "desc": desc};
+
+  @override
+  String toString() {
+    return "{id: " +
+        id +
+        ", name: " +
+        name +
+        ", type:" +
+        type +
+        ", rarity: " +
+        rarity +
+        ", desc: " +
+        desc +
+        "}";
+  }
 }
