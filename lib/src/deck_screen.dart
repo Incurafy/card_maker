@@ -53,6 +53,7 @@ class _DeckScreenState extends State<DeckScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Card Deck"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
           child: FutureBuilder<List<ItemCard>>(

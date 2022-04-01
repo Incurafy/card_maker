@@ -13,9 +13,7 @@ class CardMakerApp extends StatelessWidget {
     return MaterialApp(
       title: "Card Maker",
       theme: ThemeData(
-        colorScheme: const ColorScheme.dark(),
-        //primarySwatch: Colors.deepPurple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const DeckScreen()
     );
