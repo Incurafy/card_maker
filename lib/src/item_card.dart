@@ -7,36 +7,37 @@ class ItemCard {
   final String rarity;
   final String desc;
 
-  const ItemCard({
-      required this.id,
+  const ItemCard(
+      {required this.id,
       required this.name,
       required this.type,
       required this.rarity,
-      required this.desc
-  });
+      required this.desc});
 
   factory ItemCard.fromJson(Map<String, dynamic> json) {
     return ItemCard(
-      id: json["id"],
-      name: json["name"],
-      type: json["type"],
-      rarity: json["rarity"],
-      desc: json["desc"]
-    );
+        id: json["id"],
+        name: json["name"],
+        type: json["type"],
+        rarity: json["rarity"],
+        desc: json["desc"]);
   }
 
-  dynamic toJson() => {
-      "id": id,
-      "name": name,
-      "type": type,
-      "rarity": rarity,
-      "desc": desc 
-  };
+  dynamic toJson() =>
+      {"id": id, "name": name, "type": type, "rarity": rarity, "desc": desc};
 
   @override
   String toString() {
-    return "{id: " + id + ", name: " + name + ", type:" + type +
-           ", rarity: " + rarity + ", desc: " + desc + "}";
+    return "{id: " +
+        id +
+        ", name: " +
+        name +
+        ", type:" +
+        type +
+        ", rarity: " +
+        rarity +
+        ", desc: " +
+        desc +
+        "}";
   }
-
 }

@@ -3,31 +3,25 @@
 import 'package:flutter/cupertino.dart';
 
 Widget cardHeaderText(String text) {
-  return Text(
-    text,
-    style: const TextStyle(
-      fontStyle: FontStyle.normal,
-      fontSize: 18,
-    )
-  );
+  return Text(text,
+      style: const TextStyle(
+        fontStyle: FontStyle.normal,
+        fontSize: 18,
+      ));
 }
 
 // This is likely unnecessary in this context. Possibly useful for a version
 // that converts widgets into an image to generate a saveable magic item card.
 Widget cardSubheaderText(String text) {
-  return Text(
-    text,
-    style: const TextStyle(
-      fontStyle: FontStyle.italic,
-    )
-  );
+  return Text(text,
+      style: const TextStyle(
+        fontStyle: FontStyle.italic,
+      ));
 }
 
 Widget cardText(String text) {
-  return Text(
-    text,
-    style: const TextStyle(
-      fontSize: 14, // Default Material font size in logical pixels
-    )
-  );
+  return Text(text,
+      style: const TextStyle(
+        fontSize: 14, // Default Material font size in logical pixels
+      ));
 }
